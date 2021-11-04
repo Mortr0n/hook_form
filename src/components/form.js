@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 
 const Form = (props) => {
+    // create getters, setters and state for each of my form items
     const[firstName, setFirstName] = useState("");
     const[lastName, setLastName] = useState("");
     const[email, setEmail] = useState("");
@@ -9,21 +10,22 @@ const Form = (props) => {
     const[passwordConfirm, setPasswordConfirm] = useState("");
 
     const createUser = (event) => {
-        // Prevent browser refresh default from submit
+        // Prevent browser refresh default from submit Probably not needed actually.
         event.preventDefault();
-
-        const newUser = {firstName, lastName, email, password, passwordConfirm};
-        console.log("Welcome", newUser);
+        // building a new user object
+        //const newUser = {firstName, lastName, email, password, passwordConfirm}; Don't need since we're not building a newUser
         setFirstName("");
         setLastName("");
         setEmail("");
         setPassword("");
         setPasswordConfirm("");
     };
-
+    //Form creation, label and inputs no submit since we want it all in real time 
     return(
         <div>
+            
         <form onSubmit={ createUser }>
+           
             <div>
                 <label>First Name :</label>
                 <input type="text" value={firstName} onChange={ (event) => setFirstName(event.target.value)} />
@@ -46,6 +48,7 @@ const Form = (props) => {
             </div>
             
     </form>
+    
     <h3>Your Form Data</h3>
     <p>First Name : {firstName} </p>
     <p>Last Name : {lastName}</p>
@@ -55,9 +58,6 @@ const Form = (props) => {
     </div>
 
     );
-
-
-
 };
 
 export default Form;
