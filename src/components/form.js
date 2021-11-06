@@ -8,6 +8,7 @@ const Form = (props) => {
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
     const[passwordConfirm, setPasswordConfirm] = useState("");
+    const[nameError, setNameError] = useState("");
 
     const createUser = (event) => {
         // Prevent browser refresh default from submit Probably not needed actually.
@@ -20,6 +21,17 @@ const Form = (props) => {
         setPassword("");
         setPasswordConfirm("");
     };
+
+    //Handling errors with a handler.  As far as I can tell so far you would need one for each form field that you want to validate
+    const handleChangeFirstName = (event) => {
+        //must look at the event.target.value.length instead of the firstName.length like we do in the inline validations for consistency
+        if (event.target.value.length < 2) {
+            setNameError("First name must be at least 2 characters long!")
+        } else {
+            setNameError("");
+            setFirstName(event.target.value);
+        }
+    }
     //Form creation, label and inputs no submit since we want it all in real time 
     return(
         <div>
@@ -27,9 +39,11 @@ const Form = (props) => {
         <form onSubmit={ createUser }>
            
             <div>
+                {/*Handling First Name validation with a handler*/}
                 <label>First Name :</label>
-                <input type="text" value={firstName} onChange={ (event) => setFirstName(event.target.value)} />
-                {(firstName.length < 2 && firstName.length > 0) && <p style={{color:"red"}}>First Name must be at least 2 characters long.</p> }
+                <input type="text" onChange={ (event) => handleChangeFirstName(event)} />
+                {nameError && <p>{nameError}</p>}
+                {/*(firstName.length < 2 && firstName.length > 0) && <p style={{color:"red"}}>First Name must be at least 2 characters long.</p> */}
             </div>
             <div>
                 <label>Last Name :</label>
