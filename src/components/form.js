@@ -10,8 +10,9 @@ const Form = (props) => {
     const[passwordConfirm, setPasswordConfirm] = useState("");
     const[nameError, setNameError] = useState("");
 
+    // createUser not needed for what we were assigned, but keeping for future reference.
     const createUser = (event) => {
-        // Prevent browser refresh default from submit Probably not needed actually.
+        // Prevent browser refresh default on submit
         event.preventDefault();
         // building a new user object
         //const newUser = {firstName, lastName, email, password, passwordConfirm}; Don't need since we're not building a newUser
